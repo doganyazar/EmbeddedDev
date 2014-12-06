@@ -1,0 +1,23 @@
+#!/usr/bin/kermit +
+
+assign mydevice /dev/ttyUSB0
+assign mylog /tmp/kermit.log
+
+if defined \%1 assign mydevice \%1
+if defined \%2 assign mylog \%2
+
+echo "Device: \m(mydevice)"
+echo "Log: \m(mylog)"
+
+set modem type none ; There is no modem
+
+set line \m(mydevice) ; device name
+
+set speed 115200 ; Or other desired speed
+
+SET CARRIER-WATCH OFF
+SET SESSION-LOG TEXT
+SET SESSION-LOG TIMESTAMPED-TEXT
+log session \m(mylog) new
+
+connect

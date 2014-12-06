@@ -1,0 +1,14 @@
+# AllowSubstExceptions() 
+
+Import('env', 'test_conf')
+
+# Clone so not to effect the main environment
+env = env.Clone()
+ 
+src_files = []
+for dir in ['./']:
+    src_files += Glob(dir + '*.c')
+ 
+Objs = env.Object(source = src_files)
+ 
+Return('Objs')

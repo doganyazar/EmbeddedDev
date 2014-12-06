@@ -1,0 +1,18 @@
+# AllowSubstExceptions() 
+
+Import('env', 'test_conf')
+
+# Clone so not to effect the main environment
+env = env.Clone()
+
+#TODO this should be defined in SConstruct depending on the target type
+env.Append(CPPPATH=['#platform-native'])
+
+src_files = []
+for dir in ['./']:
+    src_files += Glob(dir + '*.c')
+    src_files += Glob(dir + '*.cpp')
+ 
+Objs = env.Object(source = src_files)
+ 
+Return('Objs')

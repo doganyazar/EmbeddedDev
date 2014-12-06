@@ -1,0 +1,9 @@
+Import('env')
+
+# Clone so not to effect the main environment
+env = env.Clone()
+
+Objs = env.Object(source = [Glob('*.c')])
+# Default(VirtualTestLib)
+
+Return('Objs')
